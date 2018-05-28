@@ -7,6 +7,7 @@
 
     $http.get("/Home/PeopleList")
         .then(function (response) {
+            console.log(response);
             $scope.names = response.data;
         });
 
@@ -20,13 +21,14 @@
     }
 });
 
-app.controller('carCtrl', function ($scope, $http) {
+app.controller('carCtrl', function ($scope, $http, CarsService) {
     $scope.lookFor = "";
     //$scope.names = ["Saab", "Volvo", "Opel", "BMW", "Audi"];
     $scope.names = [];
-
-    $http.get("/Home/CarList")
+    $scope.names = CarsService.carList()
         .then(function (response) {
             $scope.names = response.data;
-        });
+    });
+
+    
 });
